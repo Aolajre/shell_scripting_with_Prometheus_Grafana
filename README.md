@@ -73,7 +73,9 @@ This is bonus points
 0. Delete any containers running from the last part.
 1. Add Prometheus container (prom/prometheus:v2.45.2) to the docker-compose.yaml form part 2.
 3. Configure Prometheus to collect data from our application at <application>:<port>/metrics endpoint. (Where the <port> is the port from part 1.)
-4. Make sure that Prometheus is accessible at http://localhost:9090 on the host.
+4. Make sure that Prometheus is accessible at http://localhost:9091 on the host. Default port of Prometheus is at 9090, which you used already for your other container. 
+
+To confirm metrics are being fetched from the 1st container into prometheus. Go to the http://localhost:9090 multipe times. And then go to http://localhost:9091 and search for the `csv_requests_total` metric. You should see how many times the container one is accessed. 
 
 Save the Solution
 
