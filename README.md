@@ -1,9 +1,3 @@
----
-runme:
-  id: 01HNNAFA8GKRJMD3MNWXR8M95K
-  version: v2.2
----
-
 # The DevOps Assignment
 
 The developer team of atVenu left for their long-awaited Christmas break. You have been given the responsibility to figure out how to run the webserver for production correctly. You should fix the things which are breaking, and find an easy way to deploy the application. To gain bonus points you should introduce some monitoring.
