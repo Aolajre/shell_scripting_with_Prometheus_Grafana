@@ -1,11 +1,16 @@
+---
+runme:
+  id: 01HNNAFA8GKRJMD3MNWXR8M95K
+  version: v2.2
+---
+
 # The DevOps Assignment
 
-The developer team of atVenu left for their long-awaited Christmas break. You have been given the responsibility to figure out how to run the webserver for production correctly. You should fix the things which are breaking, and find an easy way to deploy the application. To gain bonus points you should introduce some monitoring. 
-
+The developer team of atVenu left for their long-awaited Christmas break. You have been given the responsibility to figure out how to run the webserver for production correctly. You should fix the things which are breaking, and find an easy way to deploy the application. To gain bonus points you should introduce some monitoring.
 
 ## Pre-requisites
 
-Though you may be working with shell scripts, docker and Prometheus but you don't need to have any prior experience with these technologies. Understanding the basic getting-started guide of these technologies would be more than enough to complete the challenge. 
+Though you may be working with shell scripts, docker and Prometheus, you don't need to have any prior experience with these technologies. Understanding the basic getting-started guide of these technologies will be more than enough to complete the challenge.
 
 - [Getting started with Docker](https://docs.docker.com/get-started/)
 - [Build your own apps and images](https://docs.docker.com/get-started/02_our_app/)
@@ -13,58 +18,62 @@ Though you may be working with shell scripts, docker and Prometheus but you don'
 - [Read Prometheus getting started](https://prometheus.io/docs/prometheus/latest/getting_started/)
 - [Read Prometheus installation with Docker](https://prometheus.io/docs/prometheus/latest/installation/)
 - Install docker and docker-compose on your machine and run the following commands
-```
+
+```sh {"id":"01HNNAFA8GKRJMD3MNWQQS7WME"}
 docker pull atvenu/assignment-webserver
 docker pull prom/prometheus:v2.45.2
 ```
-- Clone this repository to your machine
+
+- Clone this repository to your machine.
 - `bash` shell was used to test this assignment, you can use other shells but they might cause unknown issues.
-- Create a new **private** repository in your GitHub account
-- `cd` into the `solution` directory and save all your notes/fixes/files in there. 
+- Create a new **private** repository in your GitHub account.
+- `cd` into the `solution` directory and save all your notes/fixes/files in there.
 
-
-In case you have a Windows machine, or don't want to install the software's on your machine, you can always use [https://labs.play-with-docker.com](https://labs.play-with-docker.com) 
-
+In case you have a Windows machine, or don't want to install the software on your machine, you can use [https://labs.play-with-docker.com](https://labs.play-with-docker.com).
 
 ### Important points to note
 
-- Any step from the assignment does not require you to modify the container image or build your own container image at all. Hence don't build your custom Image. 
-- Make sure all the files you create have the exact same names as given.
-- Don't commit all of your work as a single commit, commit it as you finish each part, so we can see the work as you built it up.
+- The assignment does not require you to modify the container image or build your own container image. Hence don't build your custom Image.
+- Make sure all the files you create have the exact names as given.
+- Don't commit all of your work in a single commit, commit it as you finish each part, so we can see the work as you build it up.
 - The solution should work on a different machine, which has docker and docker-compose, without any modifications.
 - Reading this document carefully is the key to solving this assignment.
 - If you need more time or are stuck at some point, don't hesitate to reach out to us.
 
 ## Part 1
 
-1. Run the container image `atvenu/assignment-webserver:latest` in background and check if it is running
-2. If it is failing try to find the reason, and move to the next step. 
-3. Write a bash script `csv.sh` to create a file named `data.csv` whole content looks like this:
-```
+0. Run the container image `atvenu/assignment-webserver:latest` in the background and check if it is running.
+1. If it is failing try to find the reason, and move to the next step.
+2. Write a bash script `csv.sh` to create a file named `data.csv` whose content looks like this:
+
+```ini {"id":"01HNNAFA8GKRJMD3MNWT50392B"}
 0, 2929
 1, 67
 2, 99
 ```
- These are comma separated values with an index followed by a random number. 
- - running the script `csv.sh` should generate 10 such entries. 
+
+These are comma separated values with an index followed by a random number.
+
+- running the script `csv.sh` should generate 10 such entries.
+
 4. Run the container again in the background with the file generated in (3) available inside the container (remember the reason you found in (2)).
-5. If you are able to run the image now, map the container port 8080 to your host port at 9090
-6. You might want to change the border color of the application, so set the `BORDER_COLOR` to `blue` and re-run your container. 
+5. If you are able to run the image now, map the container port 8080 to your host port at 9090.
+6. You might want to change the border color of the application, so set the `BORDER_COLOR` to `blue` and re-run your container.
 
-If all steps are done correctly your application should be accessible at http://localhost:9090 . it should show the values generated by your `csv.sh`. 
+If all steps are done correctly, your application should be accessible at http://localhost:9090 . it should show the values generated by your `csv.sh`.
 
-Congratulation, you fixed the Issue of the app. Add a readme file inside the solution directory and write the command that you used to run the image successfully. Save all your work in a commit and push it your repository. 
+Congratulations, you fixed the Issue of the app. Add a `README.md` file inside the solution directory and write the command that you used to run the image successfully. Save all your work in a commit and push it to your repository.
 
 ## Part 2
 
-0. Delete any container still running from your previous steps. 
-1. Create a `docker-compose.yaml` file for the setup from part 1. 
-2. run the previous container using docker-compose i.e. `docker-compose up` should run the container. 
+0. Delete any container still running from the previous steps.
+1. Create a `docker-compose.yaml` file for the setup from part 1.
+2. Run the previous container using `docker-compose up`.
 
 ### Save your solution
-- copy your docker-compose.yaml to the solution directory. 
-- Commit your changes to your git repository. 
 
+- copy your `docker-compose.yaml` file to the solution directory.
+- Commit your changes to your git repository.
 
 ## Part 3
 
@@ -72,22 +81,23 @@ This is bonus points
 
 0. Delete any containers running from the last part.
 1. Add the Prometheus container (prom/prometheus:v2.45.2) to the docker-compose.yaml form part 2.
-3. Configure Prometheus to collect data from our application at <application>:<port>/metrics endpoint. (Where the <port> is the port from part 1.)
-4. Make sure that Prometheus is accessible at http://localhost:9091 on the host. The default port of Prometheus is 9090, which you used already for your other container. 
+2. Configure Prometheus to collect data from our application at :/metrics endpoint (which is the port from part 1).
+3. Make sure that Prometheus is accessible at http://localhost:9091 on the host. The default port of Prometheus is 9090, which you used already for your other container.
 
-To confirm metrics are being fetched from the 1st container into Prometheus. Go to the http://localhost:9090 multiple times. And then go to http://localhost:9091 and search for the `csv_requests_total` metric. You should see how many times the container one is accessed. 
+To confirm metrics are being fetched from the 1st container into Prometheus. Go to the http://localhost:9090 multiple times. And then go to http://localhost:9091 and search for the `csv_requests_total` metric. You should see how many times the container one is accessed.
 
 Save the Solution
 
-- Update your changes to be shown in your git repository. 
-- Add any other files you may created in the solution directory.
-- Commit and push the changes to your GitHub repository. 
+- Update your changes to be shown in your git repository.
+- Add any other files you have created in the solution directory.
+- Commit and push the changes to your GitHub repository.
 
 ## Submitting the Solution
-Once you are done with the assignment and pushed all your changes. 
 
-- Add the GitHub ID of the user provided to you as a collaborator to the repository. 
-- Reply to HR with your progress and the link to your repository. 
+Once you are done with the assignment and pushed all your changes:
+
+- Add the GitHub ID of the user provided to you as a collaborator to the repository.
+- Reply to HR with your progress and the link to your repository.
 
 
 
