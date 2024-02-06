@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  assignment-webserver:
+    image: f6c6c5905cbe
+    container_name: assignment-webserver
+    ports:
+      - 9090:8080
+    environment:
+      - BORDER_COLOR=blue
+    volumes:
+      - ./data.csv:/app/data.csv
+
+  prometheus:
+    image: prom/prometheus:v2.45.2
+    container_name: prometheus
+    ports:
+      - 9091:9090
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+      - '--storage.tsdb.path=/prometheus'
+    depends_on:
+      - assignment-webserver

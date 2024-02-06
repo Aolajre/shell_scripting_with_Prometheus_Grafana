@@ -31,7 +31,25 @@ I stopped the container using "docker rm container ID"
 Using this command "docker run --name assignment-webserver -d -p 9090:8080  -e BORDER_COLOR=blue -v /c:/Users/'Olajire Aiyedun'/Videos/theworks/atVenu/devOpsAssignment/solution/part_1/data.csv:/app/data.csv f6c6c5905cbe", I was able to add the blue border to the application and able to view the result.
 
 ## Part 2
-I deleted the previous container using the command " docker rm ContainerID"
+I deleted the previous container using the command " docker stop and rm ContainerID"
 Created a Part 2 directory and a new data.csv file
 Created a docker-compose yaml file with versions '3.8' and parsed the host volume path as "./" different from the previous
 I started the container with the command using "docker compose up -d" which then ran the application sucessfully 
+
+## Part 3
+I deleted the previous container using the command " docker rm ContainerID"
+Created a Part 3 directory aligning with the task and Generated a new data.csv file using the csv.sh created in part 1
+I updated to the previously established docker compose file the prometheus container data and made it depend on the "assignment-webserver" running first
+Created a prometheus.yml file that defined the scraping configuration for Prometheus.
+When starting Prometheus, an error occurred indicating it couldn't find the prometheus.yaml configuration file. Checked the error by running the command "docker-compose logs prometheus" which showed the below;
+
+"prometheus  | ts=2024-02-06T16:06:37.726Z caller=main.go:482 level=error msg="Error loading config (--config.file=/etc/prometheus/prometheus.yaml)" file=/etc/prometheus/prometheus.yaml err="open /etc/prometheus/prometheus.yaml: no such file or directory"
+prometheus  | ts=2024-02-06T16:11:12.896Z caller=main.go:482 level=error msg="Error loading config (--config.file=/etc/prometheus/prometheus.yaml)" file=/etc/prometheus/prometheus.yaml err="open /etc/prometheus/prometheus.yaml: no such file or directory"
+
+Trobleshooted by re-writing the volume "volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml"
+
+I stopped and removed the previous containers, and ran "docker compose up" which then ran successfully.
+
+Attached to each parts are the screenshots of the results.
+
+This was an interesting project. Thank you.
