@@ -2,7 +2,7 @@
 
 # This is the function to generate a random number between 1 and 3000
 generate_random_number() {
-    echo $((1 + RANDOM % 3000))
+    echo $((1 + RANDOM % 2999))
 }
 
 # Creating and redirecting into  the data.csv file

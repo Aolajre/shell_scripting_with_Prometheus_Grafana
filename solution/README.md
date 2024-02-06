@@ -16,7 +16,7 @@ Used "docker logs -CID 591f337fa995" to check reason why the container wasn't ru
 
 The error means that the CSV file cannot be found at the /app location because it does not exist in the container's filesystem. The way to solve this is by mounting the volume on /app/data.csv
 
-Created a bash script to Answer numbers 2 and 3 and made it executable with "chmod +x csv.sh", A range is not given for the choice of random numbers explicitly, However, since the example given is four digits, I have chosen the range from 1 to 3000. Executed the script using the "sh csv.sh" which created the data.csv file in the solution directory.
+Created a bash script to Answer numbers 2 and 3 and made it executable with "chmod +x csv.sh", A range is not given for the choice of random numbers explicitly, However, since the example given is four digits, I have chosen the range from 1 to 2999. Executed the script using the "sh csv.sh" which created the data.csv file in the solution directory.
 
 Ran this command to mount the volume "docker run -v /c:/Users/'Olajire Aiyedun'/Videos/theworks/atVenu/devOpsAssignment/solution/data.csv:/app/data.csv f6c6c5905cbe", this made it listen on port 8080.
 
@@ -28,5 +28,10 @@ I then portmapped the container to the host port using the -p flag "-p 9090:8080
 
 I stopped the container using "docker rm container ID"
 
-Using this command "docker run --name assignment-webserver -d -p 9090:8080  -e BORDER_COLOR=blue -v /c:/Users/'Olajire Aiyedun'/Videos/theworks/atVenu/devOpsAssignment/solution/data.csv:/app/data.csv f6c6c5905cbe", I was able to add the blue border to the application and able to view the result.
+Using this command "docker run --name assignment-webserver -d -p 9090:8080  -e BORDER_COLOR=blue -v /c:/Users/'Olajire Aiyedun'/Videos/theworks/atVenu/devOpsAssignment/solution/part_1/data.csv:/app/data.csv f6c6c5905cbe", I was able to add the blue border to the application and able to view the result.
 
+## Part 2
+I deleted the previous container using the command " docker rm ContainerID"
+Created a Part 2 directory and a new data.csv file
+Created a docker-compose yaml file with versions '3.8' and parsed the host volume path as "./" different from the previous
+I started the container with the command using "docker compose up -d" which then ran the application sucessfully 
