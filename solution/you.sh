@@ -5,7 +5,7 @@
 git init
 git branch -M main
 git add .
-git commit -m "part_2 creating docker compose"
+git commit -m "part_3 Prometheus Setup "
 git remote add origin https://github.com/Aolajre/atVenu.git
 git push -uf origin main
 #Output from config 
